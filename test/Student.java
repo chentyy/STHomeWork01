@@ -1,4 +1,4 @@
-
+package test;
 public class Student {
     private Integer ID;//学号
 
@@ -8,9 +8,8 @@ public class Student {
 
     private boolean gender;//性别
 
-    public Student() {
-    }
-
+    /*public Student() {
+    }26 消除警告*/
     public Student(Integer ID, String name, String birDate, boolean gender) {
         this.ID = ID;
         this.name = name;
@@ -59,4 +58,4 @@ public class Student {
                 ", gender=" + gender +
                 '}';
     }
-}
+}/*class Student 6 较远的}被注释*/

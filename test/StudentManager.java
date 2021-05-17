@@ -1,5 +1,4 @@
-
-
+package test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,24 +19,63 @@ public class StudentManager {
         List<Student> studentList=new ArrayList<>();
         studentManager.setStudentList(studentList);
         boolean status=true;
-        while(status){
+       /* while(status) {
             jiemian();
-            Scanner san=new Scanner(System.in);
-            int num=san.nextInt();
-            switch (num){
-                case 1:addStudent(studentList);break;
-                case 2:searchStudent(studentList);break;
-                case 3:deleteStudent(studentList);break;
-                case 4:updateStudent(studentList);break;
-                case 5:printStudent(studentList);break;
-                case 6:status=false;break;
+            Scanner san = new Scanner(System.in);
+            int num = san.nextInt();
+            switch (num) {
+                case 1:
+                    addStudent(studentList);
+                    break;
+                case 2:
+                    searchStudent(studentList);
+                    break;
+                case 3:
+                    deleteStudent(studentList);
+                    break;
+                case 4:
+                    updateStudent(studentList);
+                    break;
+                case 5:
+                    printStudent(studentList);
+                    break;
+                case 6:
+                    status = false;
+                    break;
             }
-            if(status==false){
+            if (status == false) {
                 break;
             }
-        }
+        }26 */
+        do {
+            jiemian();
+            Scanner san = new Scanner(System.in);
+            int num = san.nextInt();
+            switch (num) {
+                case 1:
+                    addStudent(studentList);
+                    break;
+                case 2:
+                    searchStudent(studentList);
+                    break;
+                case 3:
+                    deleteStudent(studentList);
+                    break;
+                case 4:
+                    updateStudent(studentList);
+                    break;
+                case 5:
+                    printStudent(studentList);
+                    break;
+                case 6:
+                    status = false;
+                    break;
+                default:
+                    System.out.println("错误");//37
+            }
+        } while (status);
         System.out.println("退出成功");
-    }
+    }//void APP()
     public static void jiemian(){
 
         System.out.println("请选择操作：");
@@ -55,12 +93,19 @@ public class StudentManager {
         System.out.println("请输入学生学号：");
         Integer ID=san.nextInt();
         boolean checkID=true;
-        for (int i = 0; i < studentList.size(); i++) {
+       /* for (int i = 0; i < studentList.size(); i++) {
             if(studentList.get(i).getID()==ID){
                 checkID=false;
                 break;
             }
+        }26*/
+        for (Student value : studentList) {
+            if (value.getID().equals(ID)) {
+                checkID = false;
+                break;
+            }
         }
+
         if(!checkID){
             System.out.println("该学生学号已存在");
             return;
@@ -81,12 +126,19 @@ public class StudentManager {
     }
 
     public static void printStudent(List<Student> studentList){
-        for (int i = 0; i < studentList.size(); i++) {
+       /* for (int i = 0; i < studentList.size(); i++) {
             System.out.println("学生学号："+studentList.get(i).getID());
             System.out.println("学生姓名："+studentList.get(i).getName());
             System.out.println("学生出生日期："+studentList.get(i).getBirDate());
             System.out.println("学生性别："+studentList.get(i).isGender());
+        }26 */
+        for (Student student : studentList) {
+            System.out.println("学生学号：" + student.getID());
+            System.out.println("学生姓名：" + student.getName());
+            System.out.println("学生出生日期：" + student.getBirDate());
+            System.out.println("学生性别：" + student.isGender());
         }
+
     }
 
     public static void searchStudent(List<Student> studentList){
@@ -94,14 +146,23 @@ public class StudentManager {
         System.out.println("请输入要查找的学生学号：");
         boolean checkID=true;
         Integer ID=san.nextInt();
-        for (int i = 0; i < studentList.size(); i++) {
+       /* for (int i = 0; i < studentList.size(); i++) {
             if(studentList.get(i).getID()==ID){
                 System.out.println("学生姓名："+studentList.get(i).getName());
                 System.out.println("学生出生日期："+studentList.get(i).getBirDate());
                 System.out.println("学生性别："+studentList.get(i).isGender());
                 checkID=false;
             }
+        }26*/
+        for (Student student : studentList) {
+            if (student.getID().equals(ID)) {
+                System.out.println("学生姓名：" + student.getName());
+                System.out.println("学生出生日期：" + student.getBirDate());
+                System.out.println("学生性别：" + student.isGender());
+                checkID = false;
+            }
         }
+
         if(checkID){
             System.out.println("查找不到该学号的学生");
         }
@@ -113,7 +174,8 @@ public class StudentManager {
         boolean checkID=true;
         Integer ID=san.nextInt();
         for (int i = 0; i < studentList.size(); i++) {
-            if(studentList.get(i).getID()==ID){
+            //34 if(studentList.get(i).getID()==ID){
+            if(studentList.get(i).getID().equals(ID)){
                 studentList.remove(i);
                 checkID=false;
             }
@@ -130,7 +192,7 @@ public class StudentManager {
         System.out.println("请输入要修改的学生学号：");
         Integer ID=san.nextInt();
         boolean checkID=true;
-        for (int i = 0; i < studentList.size(); i++) {
+       /* for (int i = 0; i < studentList.size(); i++) {
             if(studentList.get(i).getID()==ID){
                 System.out.println("请输入学生姓名：");
                 String name=san.next();
@@ -147,6 +209,24 @@ public class StudentManager {
                 studentList.get(i).setGender(gender);
                 checkID=false;
             }
+        }26*/
+        for (Student student : studentList) {
+            if (student.getID().equals(ID)) {
+                System.out.println("请输入学生姓名：");
+                String name = san.next();
+                student.setName(name);
+                System.out.println("请输入学生出生日期：");
+                String birDate = san.next();
+                student.setBirDate(birDate);
+                System.out.println("请输入学生性别(男或者女)：");
+                String sex = san.next();
+                boolean gender = true;
+                if (sex.contains("女")) {
+                    gender = false;
+                }
+                student.setGender(gender);
+                checkID = false;
+            }
         }
         if(checkID){
             System.out.println("查找不到该学号的学生");
@@ -154,4 +234,4 @@ public class StudentManager {
             System.out.println("成功修改该学生信息");
         }
     }
-}
+}//public class StudentManager 6 距离较远的}被注释
